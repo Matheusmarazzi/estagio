@@ -19,7 +19,28 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+   
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+   <link rel="stylesheet" href="\resources\css\app.css">
+    <style type="text/css">
+    #app{
+        background: linear-gradient(to right, #5d46e2, #ddf);
+        height:101vh;
+        height: fit-content;
+              }
+    #formdiv{
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        width: 55vh;
+        border-radius: 5px;
+    }
+    #bot{
+        margin-left: auto;
+        margin-right: auto;
+        width: 100px;
+    }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -27,6 +48,9 @@
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Notícias') }}
+                </a>
+                <a class="navbar" href="{{ url('/') }}">
+                     {{ 'Voltar' }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -50,7 +74,7 @@
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registrar-se') }}</a>
                                 </li>
                             @endif
                         @else
@@ -60,15 +84,27 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
+                                    <a class="dropdown-item" href="{{ route('users.edit', Auth::user()->id) }}">
+                                        {{ __('Editar') }}
+                                    </a>
+                                    <form action="{{ route('users.destroy', Auth::user()->id)}}" method="POST" id="form">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-outline-danger">Deletar Conta</button>
+                                    </form>
+
+
+
+
                                 </div>
                             </li>
                         @endguest
