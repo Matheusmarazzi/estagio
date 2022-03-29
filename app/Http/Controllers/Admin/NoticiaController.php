@@ -68,12 +68,10 @@ class NoticiaController extends Controller
     }
     /*funçao deletar noticias*/
     public function destroy($id){
-        if(!$noticia = noticia::find($id)){
-            return redirect()->back();
-        }
+        if(!$noticia = noticia::find($id));
 
         $noticia->delete();
-        return redirect()->route('noticia.index');
-        echo "funcionou";
+        return redirect()->route('noticias.index', 'user->id');
+    
     }        
 }

@@ -27,7 +27,8 @@
                         <div class="card-body text-dark">
                             <p class="card-text">{{$noticia->corpo}}</p>
                             <a href="{{route('noticias.editar', ['user'=> $noticia->id, 'id' =>$noticia->id])}}" class="btn btn-success">Editar</a>
-                            <form action="{{route('noticias.destroy',  ['id' =>$noticia->id])}}" method="POST" id="form2">
+                            <form action="{{ route('noticias.destroy', $noticia->id)}}" method="POST" id="form2">
+                                @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-outline-danger">Deletar Notícia</button>
                             </form>

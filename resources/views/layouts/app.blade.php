@@ -25,8 +25,8 @@
     <style type="text/css">
     #app{
         background: linear-gradient(to right, #5d46e2, #ddf);
-        height:101vh;
         height: fit-content;
+        height:101vh;
               }
     #formdiv{
         background-color: white;
